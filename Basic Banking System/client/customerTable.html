@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./js/script.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+          td,
+          th,
+          tr {
+            text-align: center;
+          }
+        </style>
+    </head>
+    <body onload="tableFromJson()">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">Banking System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="customer_details.html">Search</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="transfer.html">Transfer</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="AddCustomer.html">Add Customer</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="customerTable.html">Customers</a>
+                </li>
+              </ul>
+            </div>  
+          </nav>
+        <br>
+        <h1>Customers</h1>
+        <table
+            class="table table-light table-hover table-responsive table-striped"
+            style="width: 100%; height: 100%; margin-bottom: 0; display: table"
+            id="data-table"
+        ></table>
+    </body>
+    <script>
+        async function tableFromJson() {
+            let myCustomers = await getCustomerDetails();
+            myCustomers = myCustomers.map((item) => {
+                delete item._id
+                delete item.__v
+                return item
+            })
+            console.log(myCustomers[0])
+            let rows = 0;
+            let number_of_cols = 3;
+            let trHTML = `<thead class="thead-dark"><tr><th>Name</th><th>Email</th><th>Balance</th></tr></thead>`;
+            for(let i= 0; i< myCustomers.length; i++) {
+                trHTML += "<tr><td>" + myCustomers[i].name
+                    +"</td>" + 
+                    "<td>"+
+                        myCustomers[i].email
+                    +"</td>" +
+                    "<td>" +
+                        myCustomers[i].balance
+                        +"</td>"+"</tr>";
+                        rows++;
+            }
+            for(rows; rows<myCustomers.length;rows++) {
+                trHTML += "<tr>" + "<td></td>".repeat(number_of_cols) + "</tr>";
+            }
+            $("#data-table").html(trHTML);
+        }
+    </script>
+</html>

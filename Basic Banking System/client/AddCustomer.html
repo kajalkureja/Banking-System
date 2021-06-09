@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="./js/script.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./styles/AddCustomer.css">
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Banking System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="customer_details.html">Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="transfer.html">Transfer</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link" href="AddCustomer.html">Add Customer</a>
+            </li>
+            <li>
+              <a class="nav-link" href="customerTable.html">Customers</a>
+            </li>
+          </ul>
+        </div>  
+      </nav>
+          <form class="card container">
+              <div class="row"> 
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <span>
+                  <input type="text" class="form-control-plaintext" id="name" placeholder="name" value="" onchange="setName(this.value)" required/>
+                </span>
+              </div>
+              <div class="row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <span>
+                  <input type="text" class="form-control-plaintext" id="email" placeholder="email@example.com" value="" onchange="setEmail(this.value)" required/>
+                </span>
+              </div>
+              <div class="row">
+                <label for="balance" class="col-sm-2 col-form-label">Balance</label>  
+                <span>
+                  <input type="number" class="form-control-plaintext" id="balance" placeholder="0" value="" onchange="setBalance(this.value)" required/>
+                </span>
+              </div>
+            <button class="btn btn-success" onclick="addCustomerDetails()">Add to DB</button>
+          </form>
+          <script>
+            var name="", email="", balance=0;
+            function setName(name) {
+              this.name = document.getElementById("name").value;
+            }
+            function setEmail(email) {
+              this.email = document.getElementById("email").value;
+            }
+            function setBalance(balance) {
+              this.balance = document.getElementById("balance").value;
+            }
+            function addCustomerDetails() {
+              addCustomer(this.name, this.email, this.balance)
+            }
+          </script>
+
+    </body>
+</html>

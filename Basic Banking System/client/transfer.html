@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./js/script.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./styles/transfer.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">Banking System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="customer_details.html">Search</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="transfer.html">Transfer</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="AddCustomer.html">Add Customer</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="customerTable.html">Customers</a>
+                </li>
+              </ul>
+            </div>  
+          </nav>
+        <br>
+        <div>
+          <div class="form-element">
+        <label for="fromCustomer">From: </label>
+            <select class="form-control" id="exampleFormControlSelect1" name="fromCustomer" id="fromCustomer" onchange="setCustomerValue()">
+                <option value="apoorva@gmail.com">Apoorva</option>
+                <option value="arjun@gmail.com">Arjun</option>
+                <option value="shruti@gmail.com">Shruti</option>
+                <option value="tashi@gmail.com">Tashi</option>
+                <option value="abhay@gmail.com">Abhay</option>
+                <option value="abhi@gmail.com">Abhi</option>
+                <option value="anjali@gmail.com">Anjali</option>
+                <option value="dhanraj@gmail.com">Dhanraj</option>
+                <option value="shiwani@gmail.com">Shiwani</option>
+                <option value="sushant@gmail.com">Sushant</option>
+            </select>
+          </div>
+          <div class="form-element">
+        <label for="toCustomer">To: </label>
+            <select class="form-control" id="exampleFormControlSelect1" name="toCustomer" id="toCustomer" onchange="setCustomerValue()">
+                <option value="apoorva@gmail.com">Apoorva</option>
+                <option value="arjun@gmail.com">Arjun</option>
+                <option value="shruti@gmail.com">Shruti</option>
+                <option value="tashi@gmail.com">Tashi</option>
+                <option value="abhay@gmail.com">Abhay</option>
+                <option value="abhi@gmail.com">Abhi</option>
+                <option value="anjali@gmail.com">Anjali</option>
+                <option value="dhanraj@gmail.com">Dhanraj</option>
+                <option value="shiwani@gmail.com">Shiwani</option>
+                <option value="sushant@gmail.com">Sushant</option>
+            </select>
+          </div>
+          <div class="form-element">
+        <label for="amountTransfered">Amount to be transfered:</label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" id="amountTransfered" placeholder="0" value="" onchange="setCustomerValue(this.value)">
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-success" onclick="transferDetails()">Transfer</button>
+          </div>
+          </div>
+            <script>
+                var x="", y="", amountTransfered = 0;
+                function setCustomerValue(val) {
+                    this.x = document.getElementsByName("fromCustomer")[0].value;
+                    this.y = document.getElementsByName("toCustomer")[0].value;
+                    this.amountTransfered = val;
+                }
+                function transferDetails() {
+                    console.log("from transfer", this.x);
+                    console.log("to transfer:", this.y)
+                    console.log("amount : " + this.amountTransfered)
+                    transfer(this.x,this.y, this.amountTransfered);
+                }
+            </script>
+    </body>
+</html>
